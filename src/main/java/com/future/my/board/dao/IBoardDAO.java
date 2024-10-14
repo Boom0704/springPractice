@@ -10,24 +10,25 @@ import com.future.my.board.vo.ReplyVO;
 @Mapper
 public interface IBoardDAO {
 	
-	// 게시글 목록 조회
+	//board.xml 에 써놓은 쿼리 id와 맞춰야함
+	
+	// 게시판 목록 조회
 	public ArrayList<BoardVO> getBoardList();
 	// 게시글 상세 조회
 	public BoardVO getBoard(int boardNo);
-	// 게시글 작성 
+	// 게시글 작성
 	public int writeBoard(BoardVO vo);
 	// 게시글 수정
-	public int updateBoard(BoardVO board);
-	// 댓글 리스트 
+	public int updateBoard(BoardVO vo);
+	// 게시글 삭제
+	public int deleteBoard(BoardVO vo);
+	// 댓글리스트
 	public ArrayList<ReplyVO> getReplyList(int boardNo);
 	// 댓글 조회
-	public ReplyVO getReply (String replyNo);
+	public ReplyVO getReply(String replyNo);
 	// 댓글 작성
 	public int writeReply(ReplyVO vo);
-	// 댓글 삭제 
+	// 댓글 삭제
 	public int delReply(String replyNo);
-	
-	
-	
-	
+
 }

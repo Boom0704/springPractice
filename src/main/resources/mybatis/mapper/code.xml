@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.future.my.member.dao.IMemberDAO">
+<mapper namespace="com.future.my.common.dao.ICodeDAO">
 
-	<insert id="registMember" parameterType="com.future.my.member.vo.MemberVO">
-		INSERT INTO members(mem_id, mem_pw, mem_nm)
-		VALUES(#{memId}, #{memPw}, #{memNm})
-	</insert>
+	<select id="getCodeList" parameterType="String" resultType="CodeVO">
 	
-	<select id="loginMember" parameterType="MemberVO" resultType="MemberVO">
+		SELECT comm_cd
+		     , comm_nm
+		     , comm_parent
+		FROM comm_code
+		<choose>
+			<when test="commParent==null">
+				WHERE comm_parent IS NULL
+			</when>
+			<otherwise>
+				WHERE comm_parent = #{commParent}
+			</otherwise>
+		</choose>
 		
-		SELECT mem_id
-		     , mem_nm
-		     , mem_pw
-		     , profile_img
-		FROM members
-		WHERE use_yn ='Y'
-		AND   mem_id = #{memId}
-	
 	</select>
 	
-	<update id="profileUpload" parameterType="memberVO">
+	<insert id="addCode" parameterType="CodeVO">
 	
-		 UPDATE members
-		 SET profile_img = #{profileImg}
-		 WHERE mem_id = #{memId}
-		 
-	</update>
+		INSERT INTO comm_code (comm_cd, comm_nm, comm_parent, comm_ord )
+		VALUES(#{commCd}, #{commNm}, #{commParent}, #{commOrd})
+		
+	</insert>
+	
+	<delete id="deleteCode" parameterType="String">
+	
+		DELETE FROM comm_code
+		WHERE comm_cd = #{commCD}
+		
+	</delete>
 	
 </mapper>

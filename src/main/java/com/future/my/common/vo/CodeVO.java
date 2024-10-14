@@ -1,18 +1,23 @@
 package com.future.my.common.vo;
 
-/**
- * @author 202-26
- *
- */
 public class CodeVO {
-	private String commCD;
+	
+	private String commCd;
 	private String commNm;
 	private String commParent;
-	public String getCommCD() {
-		return commCD;
+	private String commOrd;
+	
+	public String getCommCd() {
+		return commCd;
 	}
-	public void setCommCD(String commCD) {
-		this.commCD = commCD;
+	public String getCommOrd() {
+		return commOrd;
+	}
+	public void setCommOrd(String commOrd) {
+		this.commOrd = commOrd;
+	}
+	public void setCommCd(String commCd) {
+		this.commCd = commCd;
 	}
 	public String getCommNm() {
 		return commNm;
@@ -28,7 +33,12 @@ public class CodeVO {
 	}
 	@Override
 	public String toString() {
-		return "CodeVO [commCD=" + commCD + ", commNm=" + commNm + ", commParent=" + commParent + "]";
+		return "CodeVO [commCd=" + commCd + ", commNm=" + commNm + ", commParent=" + commParent + ", commOrd=" + commOrd
+				+ "]";
 	}
+	
+	
+	
+	
 
 }

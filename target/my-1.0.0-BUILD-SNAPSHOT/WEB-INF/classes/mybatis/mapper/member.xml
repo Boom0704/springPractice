@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.future.my.member.dao.IMemberDAO">
-
+	<!--  IMemberDAO 의 매개변수와 맞춰줘야함 memvervo의 memId 임, 데이터베이스의 mem_id가 아니라 -->
 	<insert id="registMember" parameterType="com.future.my.member.vo.MemberVO">
 		INSERT INTO members(mem_id, mem_pw, mem_nm)
 		VALUES(#{memId}, #{memPw}, #{memNm})
 	</insert>
 	
 	<select id="loginMember" parameterType="MemberVO" resultType="MemberVO">
-		
 		SELECT mem_id
-		     , mem_nm
-		     , mem_pw
-		     , profile_img
+     		 , mem_nm
+     		 , mem_pw
+     		 , profile_img
 		FROM members
-		WHERE use_yn ='Y'
-		AND   mem_id = #{memId}
-	
+		WHERE use_yn = 'Y'
+		AND mem_id = #{memId}
 	</select>
 	
-	<update id="profileUpload" parameterType="memberVO">
-	
-		 UPDATE members
-		 SET profile_img = #{profileImg}
-		 WHERE mem_id = #{memId}
-		 
+	<update id="profileUpload" parameterType="MemberVO">
+		UPDATE members
+		SET profile_img = #{profileImg}
+		WHERE mem_id = #{memId}
 	</update>
-	
 </mapper>

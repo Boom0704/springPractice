@@ -2,14 +2,14 @@ package com.future.my.board.vo;
 
 public class ReplyVO {
 	
-	   private int boardNo;
-	   private String replyNo;
-	   private String memId;
-	   private String memNm;
-	   private String replyContent;
-	   private String useYn;
-	   private String replyDate;
-	   
+	private int boardNo;
+	private String replyNo;
+	private String memId;
+	private String memNm;
+	private String replyContent;
+	private String useYn;
+	private String replyDate;
+	
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -52,13 +52,10 @@ public class ReplyVO {
 	public void setReplyDate(String replyDate) {
 		this.replyDate = replyDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "ReplyVO [boardNo=" + boardNo + ", replyNo=" + replyNo + ", memId=" + memId + ", memNm=" + memNm
 				+ ", replyContent=" + replyContent + ", useYn=" + useYn + ", replyDate=" + replyDate + "]";
 	}
-	   
-	   
 	
 }

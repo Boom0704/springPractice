@@ -21,17 +21,16 @@
 			<div class="divider-custom">
 				<div class="divider-custom-line"></div>
 				<div class="divider-custom-icon">
-					<c:if test="${sessionScope.login.profileImg == null}">
+					<c:if test="${sessionScope.login.profileImg == null }">
 					<img src="${pageContext.request.contextPath}/assets/img/non.png"
 						id="myImage" class="rounded-circle img-thumbnail shadow-sm"
 						width="200" style="cursor: pointer;">
 					</c:if>
-					<c:if test="${sessionScope.login.profileImg != null}">
+					<c:if test="${sessionScope.login.profileImg != null }">
 					<img src="${pageContext.request.contextPath}${sessionScope.login.profileImg}"
 						id="myImage" class="rounded-circle img-thumbnail shadow-sm"
 						width="200" style="cursor: pointer;">
 					</c:if>
-					
 					<form id="profileForm" enctype="multipart/form-data">
 						<input type="file" name="uploadImage" id="uploadImage"
 							accept="image/*" style="display: none;">
@@ -45,10 +44,10 @@
 					<form method="post" action="<c:url value="/registDo" />">
 						<div class="form-floating mb-3">
 							<input class="form-control" name="memId" type="text" disabled
-								value="${sessionScope.login.memId}" placeholder="아이디를 입력해주세요 "> <label>아이디</label>
+								value="${sessionScope.login.memId }" placeholder="아이디를 입력해주세요 "> <label>아이디</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input class="form-control" name="memNm" type="text" value="${sessionScope.login.memNm}"
+							<input class="form-control" name="memNm" type="text" value="${sessionScope.login.memNm }"
 								placeholder="이름을 입력해주세요 "> <label>이름</label>
 						</div>
 						<button class="btn btn-primary btn-xl" type="submit">수정하기</button>
@@ -67,37 +66,35 @@
 			$("#uploadImage").on("change", function(){
 				let file = $(this)[0].files[0];
 				if(file){
-					let fileType= file['type'];
-					let valTypes = ['image/gif','image/jpeg','image/jpg','image/png'];
+					let fileType = file['type'];
+					let valTypes = ['image/png','image/jpeg','image/jpg','image/gif'];
 					if(!valTypes.includes(fileType)){
 						alert("유효한 이미지 타입이 아닙니다.!!");
-						$(this).val(''); //선택파일 초기화
+						$(this).val('');  // 선택파일 초기화
 					}else{
-						// FormData HTML 폼 데이터를 쉽게 가져오도록 하는 
-						// submit이 아닌 비동기로 폼데이터를 전송하기 위해 
+						// FormData HTML 폼 데이터를 쉽게 가져오도록 하는
+						// submit이 아닌 비동기로 폼데이터를 전송하기 위해
 						let formData = new FormData($("#profileForm")[0]);
 						$.ajax({
 							 url : '<c:url value="/files/upload" />'
-							,type:'POST'
-							,data:formData
-							,dataType:'json'
-							,processData:false //formData객체를 URL인코딩하지 않도록
-							,contentType:false //디폴트 전송인 application/x-www-form-urlencoded 로 전송하지 않도록
-							                   // 파일은 multipart/form-data 이진 데이터 형태로 전송
-							,success:function(res){
+							,type : 'POST'
+							,data : formData
+							,dataType : "json"
+							,processData : false  // formData객체를 URL인코딩하지 않도록
+							,contentType : false  // 디폴트 전송인 application/x-www-form-urlencoded 로 전송하지 않도록
+												  // 파일은 multipart/form-data 이진 데이터 형태로 전송
+							,success : function(res){
 								console.log(res);
 								if(res.message == 'success'){
 									$("#myImage").attr("src", "${pageContext.request.contextPath}" + res.imagePath);
 								}
-							},error:function(e){
-								console.log(e)
+							},error : function(e){
+								console.log(e);
 							}
 						});
 					}
 				}
-				
 			});
-			
 		});
 	</script>
 </body>
